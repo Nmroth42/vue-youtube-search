@@ -1,7 +1,7 @@
 <template>
   <div class="VideoList">
     <div class="row largeScreenVideoList" >
-      <Video-Item v-for="video in videos" :key="video.id.videoId" :video="video">
+      <Video-Item  class="videoItem" v-for="video in videos" :key="video.id.videoId" :video="video">
 
       </Video-Item>
     </div>
@@ -31,6 +31,7 @@
 </script>
 
 <style scoped>
+  
   .largeScreenVideoList {
     width: 1070px;
     transform: translate(-50%);
@@ -43,7 +44,7 @@
    
     margin-left:auto;
     margin-right:auto;
-   
+ 
     }
   }
   @media only screen and (max-width: 1030px) {
