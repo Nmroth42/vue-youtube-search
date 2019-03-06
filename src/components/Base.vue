@@ -2,7 +2,8 @@
   <div class="Base">
     <div>
       <b-navbar toggleable="lg" type="light" variant="light" class="white uborder">
-        <b-navbar-brand href="#" style="color:rgba(0, 0, 0, 0.69);">
+         
+        <b-navbar-brand  @click="navigateTo({name:'index'})" href="#" style="color:rgba(0, 0, 0, 0.69);">
           <span style=" margin-left:3px;
                         color:rgba(0, 0, 0, 0.42);
                         font-size:18px;">
@@ -14,6 +15,7 @@
             but only search
           </span>
         </b-navbar-brand>
+       
       </b-navbar>
     </div>
   </div>
@@ -26,7 +28,12 @@
       return {
         msg: 'Welcome to Your Vue.js App'
       }
-    }
+    },
+     methods: {
+      navigateTo(route) {
+        this.$router.push(route)
+      }
+    },
   }
 
 </script>

@@ -1,53 +1,43 @@
 <template>
-  <div class="VideoListItem  " style="padding:3px !important;">
-    <!-- {{video.snippet.title}} -->
+  <div class="VideoListItem" >
     <b-card class="card">
       <img class="card-img-top" v-bind:src="videoImage">
       <br>
       <br>
-
-      <h6 class="card-title" style="  "> {{video.snippet.title}}</h6>
-      <hr style="background:#FAFAFA;">
+      <h6 class="card-title"> {{video.snippet.title}}</h6>
+      <hr>
       <b-card-text>
         <span class="textWrapper">{{video.snippet.description}}</span>
         <span v-if="!video.snippet.description"> This video has no description </span>
       </b-card-text>
-
-
     </b-card>
-
   </div>
 </template>
 
 <script>
   import Search from '@/services/Search'
-
+  
   export default {
     name: 'VideoListItem',
-    data() {
-      return {
-        text: 'eee'
-      }
-    },
-    created() {
-
-    },
     computed: {
       videoImage() {
         return this.video.snippet.thumbnails.medium.url;
       }
     },
     props: ['video']
-
   }
-
 </script>
 
 <style scoped>
-.textWrapper {
+  .textWrapper {
+    background: rgba(245, 245, 245, 0.55);
+    padding: 5px;
+  }
+  
+  .VideoListItem {
+    padding:3px !important;
+  }
 
-  background:rgba(245, 245, 245, 0.55); padding:5px;
-}
   @media only screen and (max-width: 560px) {
     .VideoListItem {
       transform: translate(-50%);
@@ -55,7 +45,7 @@
       left: 50%;
     }
   }
-
+  
   .VideoListItem .card:hover {
     cursor: pointer;
     background: rgba(250, 250, 250, 0.42);
@@ -63,13 +53,12 @@
     transition: 0.15s ease-in-out;
     transition-property: all;
   }
-
+  
   .VideoListItem .card:hover .card-img-top {
-
     -webkit-filter: saturate(1.3);
     filter: saturate(1.3);
   }
-
+  
   .card {
     width: 260px;
     border: none;
@@ -77,20 +66,19 @@
     height: 415px;
     border-bottom: 4px solid #F5F5F5 !important;
   }
-
+  
   .card-body {
     font-size: 15px !important;
     padding: 0px !important;
-
     text-overflow: ellipsis !important;
   }
-
+  
   .card-text {
     padding: 10px;
     color: rgba(0, 0, 0, 0.69);
     text-align: left;
   }
-
+  
   .card-title {
     font-weight: bold;
     font-size: 16px;
@@ -100,5 +88,4 @@
     overflow: hidden;
     text-overflow: ellipsis !important;
   }
-
 </style>

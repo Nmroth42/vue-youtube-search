@@ -1,34 +1,34 @@
 <template>
   <div id="app">
-    
-     <Base/>
-     <Search-Bar/>
+    <Base/>
+    <Search-Bar/>
+    <transition name="router-anim">
     <router-view/>
-   
+    </transition>
   </div>
 </template>
 
 <script>
-import Base from '@/components/Base.vue'
-import SearchBar from '@/components/SearchBar.vue'
-
-export default {
-  name: 'App',
+  import Base from '@/components/Base.vue'
+  import SearchBar from '@/components/SearchBar.vue'
+  export default {
+    name: 'App',
     components: {
       Base,
-      SearchBar
+      SearchBar,
     },
-}
-
+  }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
- 
-}
+
+@import "https://fastcdn.org/Animate.css/3.4.0/animate.min.css";
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>
