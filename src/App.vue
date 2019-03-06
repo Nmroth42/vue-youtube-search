@@ -2,18 +2,21 @@
   <div id="app">
     
      <Base/>
+     <Search-Bar/>
     <router-view/>
-    
+   
   </div>
 </template>
 
 <script>
 import Base from '@/components/Base.vue'
+import SearchBar from '@/components/SearchBar.vue'
 
 export default {
   name: 'App',
     components: {
-      Base
+      Base,
+      SearchBar
     },
 }
 

@@ -14,7 +14,6 @@
                 Search
               </span>
             </b-button>
-            <!-- v-on:blur="handleSearchFocusSuggestions()" -->
             <div v-if="suggestionsList" style="border:1px solid rgba(0, 0, 0, 0.205); background:white; border-top:none; width:100%; z-index:1000; position:absolute;left:0px; top:38px; padding:0px;margin:auto; "
               class="  ">
               <div v-on:click="handleSearchSuggestions(item)" class="searchItem" style="background:white; text-align: left;   margin-top:3px; "
@@ -31,12 +30,9 @@
 
     </div>
 
+    <!-- <VideoList :videos="this.$store.state.videos">
 
-    <div v-if="videos" class="VideoListWrapper">
-      <VideoList :videos="videos">
-
-      </VideoList>
-    </div>
+      </VideoList>     -->
   </div>
 </template>
 
@@ -84,6 +80,9 @@
       }
     },
     methods: {
+      // navigateTo(route) {
+      //   this.$router.push(route)
+      // },
       handleSearchWatcher() {
         this.isWatcherWork = true
       },
@@ -92,25 +91,50 @@
           this.searchMessage = "You've entered empty query!"
         } else {
           Search({
-            apiKey: 'AIzaSyBYNs68w7K7IoPSJ5KM1bDqg9Y9hS0PzQM',
-            term: this.searchString,
-          }, response => this.videos = response);
+              apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
+              term: this.searchString,
+            }, response => this.$store.dispatch('SetVideos', response)
+
+          );
+          console.log("btn press");
+          console.log(this.$store.state.videos);
           this.suggestionsList = null;
-          this.searchMessage = "Enter the query"
+          this.searchMessage = "Enter the query";
+          var vm = this
+
+          //Тут нужно добавить лоадинг вместо таймаута
+          setTimeout(function () {
+            vm.$router.push({
+              name: 'list'
+            })
+          }, 700)
+
+
         }
       },
+      // this.$store.state.videos
       handleSearchSuggestions(item) {
         this.isWatcherWork = false
         this.searchString = item
         var vm = this;
 
         Search({
-          apiKey: 'AIzaSyBYNs68w7K7IoPSJ5KM1bDqg9Y9hS0PzQM',
+          
+          apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
           term: item,
-        }, response => vm.videos = response);
+        }, response => this.$store.dispatch('SetVideos', response));
         vm.searchMessage = "Enter the query"
 
         vm.suggestionsList = null;
+        
+          var vm = this
+
+          //Тут нужно добавить лоадинг вместо таймаута
+          setTimeout(function () {
+            vm.$router.push({
+              name: 'list'
+            })
+          }, 700)
 
 
 
