@@ -4,7 +4,7 @@
       <b-navbar type="dark" variant="light" class="noPadding">
         <b-nav-form v-on:submit.prevent="handleFormSubmit()" class=" col-12 justify-content-md-center mainBackground">
           <div class="col-md-8 col-sm-9 col-lg-6 searchPanel">
-            <b-form-input v-on:focus="handleSearchWatcher()" v-on:blur="handleSearchFocusSuggestions()" v-model="searchString" class="searchInput" type="text" autocomplete="off" id="searchInput" v-bind:placeholder="searchMessage" autofocus/>
+            <b-form-input v-on:focus="handleSearchWatcher()" v-on:blur="handleSearchFocusSuggestions()" v-model="searchString" class="searchInput" type="text" autocomplete="off" v-bind:placeholder="searchMessage" autofocus/>
             <b-button variant="Info" class="searchButton uborder white " type="submit">
               <span class="paleText">Search</span>
             </b-button>
@@ -165,6 +165,9 @@
 </script>
 
 <style scoped>
+  .b-form-input {
+     width: 100% !important;
+  }
   .SearchSuggestionsListWrapper {
     border: 1px solid rgba(0, 0, 0, 0.205);
     background: white;
