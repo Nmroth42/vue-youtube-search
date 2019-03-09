@@ -48,7 +48,7 @@
           this.searchMessage = "Empty query!";
         } else {
           Search({
-            apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
+            apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
             term: this.searchString,
           }, response => this.$store.dispatch('SetVideos', response));
           this.suggestionsList = null;
@@ -74,7 +74,7 @@
         this.searchString = item;
         var vm = this;
         Search({
-          apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
+          apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
           term: item,
         }, response => this.$store.dispatch('SetVideos', response));
         vm.searchMessage = "Enter the query"
