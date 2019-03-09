@@ -293,16 +293,16 @@
     pading: 0px !important;
   }
   
-  .form-control:focus {
+  .searchInput:focus {
     box-shadow: none !important;
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
   }
   
-  .form-control {
+  .searchInput {
     border: 1px solid rgba(0, 0, 0, 0.205);
   }
   
-  .form-control:hover {
+  .searchInput:hover {
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
   }
   

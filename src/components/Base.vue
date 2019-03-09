@@ -29,7 +29,7 @@
     padding-right:5px;
   }
   .brand-plain-text {
-    color:rgba(0, 0, 0, 0.69);
+    color:rgba(0, 0, 0, 0.69) !important;
   }
   
   h1,
