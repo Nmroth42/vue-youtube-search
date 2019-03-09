@@ -294,8 +294,8 @@
   }
   
   .form-control:focus {
-    box-shadow: none;
-    box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
+    box-shadow: none !important;
+    box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
   }
   
   .form-control {
