@@ -4,6 +4,7 @@ import Base from '@/components/Base';
 import SearchBar from '@/components/SearchBar';
 import IndexPage from '@/components/Index';
 import VideoList from '@/components/VideoList';
+import VideoDetail from '@/components/VideoDetail';
 
 Vue.use(Router);
 
@@ -18,7 +19,11 @@ export default new Router({
       path: '/list',
       name: 'list',
       component: VideoList,
-     
+    },
+    {
+      path: '/video/:id',
+      name: 'video',
+      component: VideoDetail,
     },
   ],
 });

@@ -9,7 +9,7 @@
               <span class="paleText">Search</span>
             </b-button>
             <div v-if="suggestionsList" class="SearchSuggestionsListWrapper">
-              <div v-on:click="handleSearchSuggestions(item)" class="searchItem" v-for="item in suggestionsList">
+              <div v-on:click="handleSearchSuggestions(item, index)" class="searchItem" v-for="(item, index) in suggestionsList"  v-bind:key="index">
                 {{item}}
               </div>
             </div>
@@ -32,7 +32,6 @@
     name: 'SearchBar',
     data() {
       return {
-        videos: null,
         searchString: '',
         suggestions: '',
         suggestionsList: null,
@@ -49,12 +48,13 @@
           this.searchMessage = "Empty query!";
         } else {
           Search({
-            apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
+            apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
             term: this.searchString,
           }, response => this.$store.dispatch('SetVideos', response));
           this.suggestionsList = null;
           this.searchMessage = "Enter the query";
           var vm = this;
+  
           //Тут нужно добавить лоадинг вместо таймаута
           setTimeout(function() {
             const route = {
@@ -63,6 +63,7 @@
             route.query = {
               search: vm.searchString
             }
+  
             console.log(vm.$route.query.search)
             vm.$router.push(route)
           }, 1000)
@@ -73,7 +74,7 @@
         this.searchString = item;
         var vm = this;
         Search({
-          apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
+          apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
           term: item,
         }, response => this.$store.dispatch('SetVideos', response));
         vm.searchMessage = "Enter the query"
@@ -81,9 +82,18 @@
         var vm = this
         //Тут нужно добавить лоадинг вместо таймаута
         setTimeout(function() {
-          vm.$router.push({
-            name: 'list'
-          })
+          const route = {
+            name: 'list',
+            //  params: {
+            //     pageCreated:true // or anything you want
+            //   }
+          }
+          route.query = {
+            search: vm.searchString
+          }
+  
+          console.log(vm.$route.query.search)
+          vm.$router.push(route)
         }, 1000)
       },
       handleSearchFocusSuggestions() {
@@ -93,7 +103,20 @@
         }, 200)
       }
     },
+    computed: {
+      isSearchClear() {
+        return this.$store.state.makeSearchClear
+      }
+    },
     watch: {
+      isSearchClear: function(value) {
+        if (value == true ) {
+          this.searchString = ''
+          console.log(value)
+          this.$store.commit('makeSearchClear')
+
+        }
+      },
       '$route.query.search': {
         immediate: true,
         handler(value) {

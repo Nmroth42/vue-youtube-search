@@ -2,9 +2,9 @@
   <div class="Index">
    
     <br>
-    <span class="paleText textWrapper">
+    <div class="paleText">
       Project description: Nice search bar + responsive design.
-    </span>
+    </div>
 
 
   </div>
@@ -25,13 +25,11 @@
 </script>
 
 <style scoped>
-  .textWrapper {
-     
-     padding:20px;
-    
-     
+  .Index {
+    position: fixed;
+    width:100%;
   }
-  
+
   .paleText {
     color: rgba(0, 0, 0, 0.42);
     

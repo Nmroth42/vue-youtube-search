@@ -1,6 +1,8 @@
 <template>
+
   <div class="VideoListItem" >
-    <b-card class="card">
+     
+    <b-card class="card" v-on:click="handleChooseVideo({name:'video', params: {id: video.id.videoId, video:video}})">
       <img class="card-img-top" v-bind:src="videoImage">
       <br>
       <br>
@@ -24,11 +26,20 @@
         return this.video.snippet.thumbnails.medium.url;
       }
     },
-    props: ['video']
+    props: ['video'],
+     methods: {
+      handleChooseVideo(route) {
+        this.$router.push(route)
+      },
+      navigateTo(route) {
+        this.$router.push(route)
+      }
+     }
   }
 </script>
 
 <style scoped>
+ 
   .textWrapper {
     background: rgba(245, 245, 245, 0.55);
     padding: 5px;
