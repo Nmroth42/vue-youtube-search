@@ -9,20 +9,18 @@
 </template>
 
 <script>
-  import Base from '@/components/Base.vue'
-  import SearchBar from '@/components/SearchBar.vue'
-  export default {
-    name: 'App',
-    components: {
-      Base,
-      SearchBar,
-    },
-  }
+import Base from '@/components/Base.vue'
+import SearchBar from '@/components/SearchBar.vue'
+export default {
+  name: 'App',
+  components: {
+    Base,
+    SearchBar,
+  },
+}
 </script>
 
 <style>
-
-@import "https://fastcdn.org/Animate.css/3.4.0/animate.min.css";
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

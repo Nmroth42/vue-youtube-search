@@ -2,7 +2,8 @@
 
   <div class="VideoListItem" >
      
-    <b-card class="card" v-on:click="handleChooseVideo({name:'video', params: {id: video.id.videoId, video:video}})">
+    <b-card class="card" 
+    v-on:click="handleChooseVideo({name:'video', params: {id: video.id.videoId, video:video}})">
       <img class="card-img-top" v-bind:src="videoImage">
       <br>
       <br>
@@ -17,25 +18,25 @@
 </template>
 
 <script>
-  import Search from '@/services/Search'
-  
-  export default {
-    name: 'VideoListItem',
-    computed: {
-      videoImage() {
-        return this.video.snippet.thumbnails.medium.url;
-      }
+import Search from '@/services/Search'
+
+export default {
+  name: 'VideoListItem',
+  computed: {
+    videoImage() {
+      return this.video.snippet.thumbnails.medium.url;
+    }
+  },
+  props: ['video'],
+    methods: {
+    handleChooseVideo(route) {
+      this.$router.push(route);
     },
-    props: ['video'],
-     methods: {
-      handleChooseVideo(route) {
-        this.$router.push(route)
-      },
-      navigateTo(route) {
-        this.$router.push(route)
-      }
-     }
-  }
+    navigateTo(route) {
+      this.$router.push(route);
+    }
+    }
+}
 </script>
 
 <style scoped>

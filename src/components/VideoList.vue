@@ -2,36 +2,36 @@
   <div class="VideoList">
      <div class="VideoDetail-nav" >
             <span @click="navigateTo({name:'index'})" >  back to main page </span>
-        </div>
+      </div>
     <transition name="fade">
       <div v-if="this.$store.state.videos" class="VideoListWrapper">
         <div class="row largeScreenVideoList">
-          <Video-Item class="videoItem" v-for="video in this.$store.state.videos" :key="video.id.videoId" :video="video">
+          <Video-Item class="videoItem" v-for="video in this.$store.state.videos" 
+          :key="video.id.videoId" :video="video">
           </Video-Item>
         </div>
       </div>
-  
     </transition>
   </div>
 </template>
 
 <script>
-  import VideoItem from './VideoListItem'
-  import SearchBar from './SearchBar'
-  // import { setTimeout } from 'timers';
-  
-  export default {
-    components: {
-      VideoItem
-    },
-    name: 'VideoList',
-     methods: {
-      navigateTo(route) {
-        this.$store.commit('makeSearchClear')
-        this.$router.push(route)
-      }
-    },
-  }
+import VideoItem from './VideoListItem'
+import SearchBar from './SearchBar'
+// import { setTimeout } from 'timers';
+
+export default {
+  components: {
+    VideoItem,
+  },
+  name: 'VideoList',
+    methods: {
+    navigateTo(route) {
+      this.$store.commit('makeSearchClear');
+      this.$router.push(route);
+    }
+  },
+}
 </script>
 
 <style scoped>

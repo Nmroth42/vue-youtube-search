@@ -1,26 +1,21 @@
 <template>
   <div class="Index">
-   
     <br>
     <div class="paleText">
       Project description: Nice search bar + responsive design.
     </div>
-
-
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Index',
-    data() {
-      return {
-        text: 'eee'
-      }
-    },
-
-
-  }
+export default {
+  name: 'Index',
+  data() {
+    return {
+      text: 'eee'
+    };
+  },
+};
 
 </script>
 

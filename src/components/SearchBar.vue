@@ -2,19 +2,22 @@
   <div class="SearchBar">
     <div class="SearchBarInwardSpace">
       <b-navbar type="dark" variant="light" class="noPadding">
-        <b-nav-form v-on:submit.prevent="handleFormSubmit()" class=" col-12 justify-content-md-center mainBackground">
+        <b-nav-form v-on:submit.prevent="handleFormSubmit()"
+        class=" col-12 justify-content-md-center mainBackground">
           <div class="col-md-8 col-sm-9 col-lg-6 searchPanel">
-            <b-form-input v-on:focus="handleSearchWatcher()" v-on:blur="handleSearchFocusSuggestions()" v-model="searchString" class="searchInput" type="text" autocomplete="off" v-bind:placeholder="searchMessage" autofocus/>
+            <b-form-input v-on:focus="handleSearchWatcher()" 
+            v-on:blur="handleSearchOnBlurSuggestions()" v-model="searchString" class="searchInput" 
+            type="text" autocomplete="off" v-bind:placeholder="searchMessage" autofocus/>
             <b-button variant="Info" class="searchButton uborder white " type="submit">
               <span class="paleText">Search</span>
             </b-button>
             <div v-if="suggestionsList" class="SearchSuggestionsListWrapper">
-              <div v-on:click="handleSearchSuggestions(item, index)" class="searchItem" v-for="(item, index) in suggestionsList"  v-bind:key="index">
+              <div v-on:click="handleSearchSuggestions(item, index)" class="searchItem"
+               v-for="(item, index) in suggestionsList"  v-bind:key="index">
                 {{item}}
               </div>
             </div>
           </div>
-          <!-- end searchPanel -->
         </b-nav-form>
       </b-navbar>
     </div>
@@ -22,146 +25,139 @@
 </template>
 
 <script>
-  import Search from '@/services/Search'
-  import VideoList from './VideoList'
-  
-  export default {
-    components: {
-      VideoList,
-    },
-    name: 'SearchBar',
-    data() {
-      return {
-        searchString: '',
-        suggestions: '',
-        suggestionsList: null,
-        searchMessage: 'Enter the query',
-        isWatcherWork: true
-      }
-    },
-    methods: {
-      handleSearchWatcher() {
-        this.isWatcherWork = true;
-      },
-      handleFormSubmit() {
-        if (this.searchString == '') {
-          this.searchMessage = "Empty query!";
-        } else {
-          Search({
-            apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
-            term: this.searchString,
-          }, response => this.$store.dispatch('SetVideos', response));
-          this.suggestionsList = null;
-          this.searchMessage = "Enter the query";
-          var vm = this;
-  
-          //Тут нужно добавить лоадинг вместо таймаута
-          setTimeout(function() {
-            const route = {
-              name: 'list'
-            }
-            route.query = {
-              search: vm.searchString
-            }
-  
-            console.log(vm.$route.query.search)
-            vm.$router.push(route)
-          }, 1000)
-        }
-      },
-      handleSearchSuggestions(item) {
-        this.isWatcherWork = false;
-        this.searchString = item;
-        var vm = this;
-        Search({
-          apiKey: 'AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o',
-          term: item,
-        }, response => this.$store.dispatch('SetVideos', response));
-        vm.searchMessage = "Enter the query"
-        vm.suggestionsList = null;
-        var vm = this
-        //Тут нужно добавить лоадинг вместо таймаута
-        setTimeout(function() {
-          const route = {
-            name: 'list',
-            //  params: {
-            //     pageCreated:true // or anything you want
-            //   }
-          }
-          route.query = {
-            search: vm.searchString
-          }
-  
-          console.log(vm.$route.query.search)
-          vm.$router.push(route)
-        }, 1000)
-      },
-      handleSearchFocusSuggestions() {
-        var vm = this;
-        setTimeout(function() {
-          vm.suggestionsList = null;
-        }, 200)
-      }
-    },
-    computed: {
-      isSearchClear() {
-        return this.$store.state.makeSearchClear
-      }
-    },
-    watch: {
-      isSearchClear: function(value) {
-        if (value == true ) {
-          this.searchString = ''
-          console.log(value)
-          this.$store.commit('makeSearchClear')
+import Search from '@/services/Search';
+import VideoList from './VideoList';
+import { setTimeout } from 'timers';
 
+export default {
+  components: {
+    VideoList,
+  },
+  name: 'SearchBar',
+  data() {
+    return {
+      searchString: '', 
+      suggestionsList: null, // массив поисковых подсказок
+      searchMessage: 'Enter the query', // вспомогательное сообщение при поиске
+      isSearchWatcherWork: true, // в случае выбора из списка подсказок нужно  
+    }                            // отключать ватчер на searchString
+  },                             // чтобы не было выпадения нового списка подсказок (73 строчка)
+  methods: {
+    handleSearchWatcher() { // используется при фокусе на инпут
+      this.isSearchWatcherWork = true;
+    },
+    handleFormSubmit() { // поиск по кнопке
+      if (this.searchString === '') {
+        this.searchMessage = "Empty query!"; 
+      } else {
+        Search({
+          apiKey: 'AIzaSyASPCtF1qWns7VYNLmWdzsIE2MkkJn_SJs',
+          term: this.searchString,
+        }, response => this.$store.dispatch('SetVideos', response));
+        var vm = this;
+        this.suggestionsList = null;
+        this.searchMessage = "Enter the query";
+        const route = {
+          name: 'list',
         }
-      },
-      '$route.query.search': {
-        immediate: true,
-        handler(value) {
-          if (value !== undefined) {
-            this.searchString = value
-            this.isWatcherWork = false;
-            this.handleFormSubmit()
-            console.log(this.suggestionsList)
-          }
+        route.query = {
+          search: vm.searchString, 
         }
-      },
-      searchString: function(query) {
-        if (this.isWatcherWork) {
-          if (query == '') {
+        console.log(vm.$route.query.search);
+        this.isSearchWatcherWork = true; // при переходе фокус остается на инпуте. поэтому трунькаем ещё раз
+        vm.$router.push(route)
+      }
+    },
+    handleSearchSuggestions(item) { // поиск по подсказке
+      var vm = this;
+      this.isSearchWatcherWork = false;
+      this.searchString = item;
+      console.log('клик');
+      Search({
+        apiKey: 'AIzaSyASPCtF1qWns7VYNLmWdzsIE2MkkJn_SJs',
+        term: item,
+      }, response => this.$store.dispatch('SetVideos', response));
+      var vm = this
+      vm.searchMessage = "Enter the query"
+      vm.suggestionsList = null;
+      setTimeout(function(){ // даем время, чтобы isSearchWatcherWork = false сработал 
+        const route = {
+          name: 'list',
+        };
+        route.query = {
+          search: vm.searchString
+        };
+        console.log(vm.$route.query.search)
+        vm.$router.push(route)
+      }, 0);
+    },
+    
+    handleSearchOnBlurSuggestions() { // отвечает за скрытие и удаление подсказок
+      var vm = this;
+      setTimeout(function() { // без таймаута работать не будет handleSearchSuggestions. т.к handleSearchOnBlurSuggestions вызывается первой
+        vm.suggestionsList = null;
+      }, 200)
+    }
+  },
+  computed: {
+    isSearchClear() {
+      return this.$store.state.makeSearchClear // это нужно, чтобы при переходе на другие страницы
+    }                                          // сбрасывать значение searchString.
+  },                                           // это костыль, но я не знаю как по-другому.
+  watch: {                                     // Base.vue 17 строка(пример реализации)
+    isSearchClear: function(value) {
+      if (value === true ) {
+        this.searchString = ''
+        console.log(value)
+        this.$store.commit('makeSearchClear')
+
+      }
+    },
+    '$route.query.search': { // мап в url
+      immediate: true,
+      handler(value) {
+        if (value !== undefined) {
+          this.searchString = value
+          this.isSearchWatcherWork = false;
+          this.handleFormSubmit()
+          console.log(this.suggestionsList)
+        }
+      }
+    },
+    searchString: function(query) {
+      if (this.isSearchWatcherWork) {
+        if (query === '') {
+          this.suggestionsList = null
+        }
+        // тут обходим cors блокировку 
+        // response приходит функцией (152 строчка)
+        const makeCallback = script => response => {
+          document.head.removeChild(script)
+          let jsonArray = {
+            ...response
+          };
+          let jsonItem = {
+            ...jsonArray[1]
+          };
+          this.suggestionsList = jsonItem
+          if (this.searchString == '') {
             this.suggestionsList = null
           }
-          const makeCallback = script => response => {
-            document.head.removeChild(script)
-            //Тут можно сделать лучше
-            let jsonArray = {
-              ...response
-            };
-            let jsonItem = {
-              ...jsonArray[1]
-            };
-            this.suggestionsList = jsonItem
-            if (this.searchString == '') {
-              this.suggestionsList = null
-            }
-          }
-          setTimeout(function() {
-            let s = document.createElement('script')
-            s.charset = 'utf-8'
-            document.head.appendChild(s)
-            s.src =
-              'https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=' +
-              query +
-              '&callback=suggestCallback'
-            window.suggestCallback = makeCallback(s)
-          }, 100)
-  
         }
-      },
+        setTimeout(function() {
+          const s = document.createElement('script')
+          s.charset = 'utf-8'
+          document.head.appendChild(s)
+          s.src =
+            'https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=' +
+            query +
+            '&callback=suggestCallback'
+          window.suggestCallback = makeCallback(s)
+        }, 100)
+      }
     },
-  }
+  },
+}
 </script>
 
 <style scoped>

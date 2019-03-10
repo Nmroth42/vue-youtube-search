@@ -10,15 +10,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'Base',
-    methods: {
-      navigateTo(route) {
-        this.$store.commit('makeSearchClear')
-        this.$router.push(route)
-      }
+export default {
+  name: 'Base',
+  methods: {
+    navigateTo(route) {
+      this.$store.commit('makeSearchClear');
+      this.$router.push(route);
     },
-  }
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
