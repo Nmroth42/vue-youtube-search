@@ -51,7 +51,7 @@ export default {
         this.searchMessage = "Empty query!"; 
       } else {
         Search({
-          apiKey: 'AIzaSyASPCtF1qWns7VYNLmWdzsIE2MkkJn_SJs',
+          apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
           term: this.searchString,
         }, response => this.$store.dispatch('SetVideos', response));
         var vm = this;
@@ -74,7 +74,7 @@ export default {
       this.searchString = item;
       console.log('клик');
       Search({
-        apiKey: 'AIzaSyASPCtF1qWns7VYNLmWdzsIE2MkkJn_SJs',
+        apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
         term: item,
       }, response => this.$store.dispatch('SetVideos', response));
       var vm = this
