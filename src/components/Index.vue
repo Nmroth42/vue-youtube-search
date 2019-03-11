@@ -1,7 +1,7 @@
 <template>
-  <div class="Index">
+  <div class="index">
     <br>
-    <div class="paleText">
+    <div class="pale_text">
       Project description: Nice search bar + responsive design.
     </div>
   </div>
@@ -9,12 +9,7 @@
 
 <script>
 export default {
-  name: 'Index',
-  data() {
-    return {
-      text: 'eee'
-    };
-  },
+  name: 'index',
 };
 
 </script>
@@ -25,7 +20,7 @@ export default {
     width:100%;
   }
 
-  .paleText {
+  .pale_text {
     color: rgba(0, 0, 0, 0.42);
     
   }

@@ -1,9 +1,9 @@
 <template>
-  <div class="Base">
+  <div class="base">
     <b-navbar toggleable="lg" type="light" variant="light" class="white uborder">
-      <b-navbar-brand @click="navigateTo({name:'index'})" href="#" class="brand-plain-text">
-        <span class="brand-pale-text">like</span>YouTube
-        <span class="brand-pale-text">but only search</span>
+      <b-navbar-brand @click="navigateTo({name:'index'})" href="#" class="brand_plain_text">
+        <span class="brand_pale_text">like</span>YouTube
+        <span class="brand_pale_text">but only search</span>
       </b-navbar-brand>
     </b-navbar>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'Base',
+  name: 'base',
   methods: {
     navigateTo(route) {
       this.$store.commit('makeSearchClear');
@@ -23,12 +23,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .brand-pale-text {
+  .brand_pale_text {
     color: rgba(0, 0, 0, 0.42);
     font-size: 18px;
     padding-right:5px;
   }
-  .brand-plain-text {
+  .brand_plain_text {
     color:rgba(0, 0, 0, 0.69) !important;
   }
   

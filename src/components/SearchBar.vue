@@ -1,18 +1,18 @@
 <template>
-  <div class="SearchBar">
-    <div class="SearchBarInwardSpace">
-      <b-navbar type="dark" variant="light" class="noPadding">
+  <div class="search_bar">
+    <div class="search_bar_inward_space">
+      <b-navbar type="dark" variant="light" class="no_padding">
         <b-nav-form v-on:submit.prevent="handleFormSubmit()"
-        class=" col-12 justify-content-md-center mainBackground">
-          <div class="col-md-8 col-sm-9 col-lg-6 searchPanel">
+        class=" col-12 justify-content-md-center main_background">
+          <div class="col-md-8 col-sm-9 col-lg-6 search_Panel">
             <b-form-input v-on:focus="handleSearchWatcher()" 
-            v-on:blur="handleSearchOnBlurSuggestions()" v-model="searchString" class="searchInput" 
+            v-on:blur="handleSearchOnBlurSuggestions()" v-model="searchString" class="search_input" 
             type="text" autocomplete="off" v-bind:placeholder="searchMessage" autofocus/>
-            <b-button variant="Info" class="searchButton uborder white " type="submit">
-              <span class="paleText">Search</span>
+            <b-button variant="Info" class="search_button uborder white " type="submit">
+              <span class="pale_text">Search</span>
             </b-button>
-            <div v-if="suggestionsList" class="SearchSuggestionsListWrapper">
-              <div v-on:click="handleSearchSuggestions(item, index)" class="searchItem"
+            <div v-if="suggestionsList" class="search_suggestions_list_wrapper">
+              <div v-on:click="handleSearchSuggestions(item, index)" class="search_item"
                v-for="(item, index) in suggestionsList"  v-bind:key="index">
                 {{item}}
               </div>
@@ -33,7 +33,7 @@ export default {
   components: {
     VideoList,
   },
-  name: 'SearchBar',
+  name: 'search_bar',
   data() {
     return {
       searchString: '', 
@@ -51,7 +51,7 @@ export default {
         this.searchMessage = "Empty query!"; 
       } else {
         Search({
-          apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
+          apiKey: 'AIzaSyCTJYnFIwjms8ycm2wr83hPgYA-2m4siqQ',
           term: this.searchString,
         }, response => this.$store.dispatch('SetVideos', response));
         var vm = this;
@@ -74,7 +74,7 @@ export default {
       this.searchString = item;
       console.log('клик');
       Search({
-        apiKey: 'AIzaSyCYuEYR2Hvf1ZHaYnpDTZQwF3kmXzQC7Xk',
+        apiKey: 'AIzaSyCTJYnFIwjms8ycm2wr83hPgYA-2m4siqQ',
         term: item,
       }, response => this.$store.dispatch('SetVideos', response));
       var vm = this
@@ -118,9 +118,12 @@ export default {
       handler(value) {
         if (value !== undefined) {
           this.searchString = value
+          const vm = this
           this.isSearchWatcherWork = false;
-          this.handleFormSubmit()
-          console.log(this.suggestionsList)
+          setTimeout(function(){
+          vm.handleFormSubmit()
+          console.log(vm.suggestionsList)
+        }, 0)
         }
       }
     },
@@ -164,7 +167,7 @@ export default {
   .b-form-input {
      width: 100% !important;
   }
-  .SearchSuggestionsListWrapper {
+  .search_suggestions_list_wrapper {
     border: 1px solid rgba(0, 0, 0, 0.205);
     background: white;
     border-top: none;
@@ -177,30 +180,30 @@ export default {
     margin: auto;
   }
   
-  .searchInput {
+  .search_input {
     width: 100% !important;
   }
   
-  .searchPanel {
+  .search_Panel {
     padding: 0px !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   
-  .mainBackground {
+  .main_background {
     background: #FAFAFA;
   }
   
-  .noPadding {
+  .no_padding {
     padding: 0px !important;
   }
   
-  .SearchBarInwardSpace {
+  .search_bar_inward_space {
     background: #FAFAFA !important;
     padding: 20px;
   }
   
-  .searchButton {
+  .search_button {
     position: absolute;
     z-index: 10;
     right: 0px;
@@ -208,19 +211,19 @@ export default {
     background: #F8F8F8;
   }
   
-  .searchButton:hover span {
+  .search_button:hover span {
     color: rgba(0, 0, 0, 0.87) !important;
   }
   
-  .searchButton:hover {
+  .search_button:hover {
     background: #F0F0F0 !important;
   }
   
-  .searchItem:hover {
+  .search_item:hover {
     background: #EEEEEE !important;
   }
   
-  .searchItem {
+  .search_item {
     font-weight: 500;
     cursor: default;
     font-size: 16px;
@@ -233,20 +236,9 @@ export default {
     margin-top: 3px;
   }
   
-  .VideoListWrapper {
-    margin: 60px;
-    padding: 30px;
-    margin-top: 30px;
-    /* background: rgba(252, 164, 164, 0.1); */
-    background-image: radial-gradient(circle, rgb(236, 236, 236), white);
-  }
-  
   @media only screen and (max-width: 900px) {
-    .VideoListWrapper {
-      margin: 0px;
-      padding: 30px;
-    }
-    .searchItem {
+   
+    .search_item {
       font-weight: 500;
       font-size: 15px;
       padding: 2px;
@@ -289,16 +281,16 @@ export default {
     pading: 0px !important;
   }
   
-  .searchInput:focus {
+  .search_input:focus {
     box-shadow: none !important;
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
   }
   
-  .searchInput {
+  .search_input {
     border: 1px solid rgba(0, 0, 0, 0.205);
   }
   
-  .searchInput:hover {
+  .search_input:hover {
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
   }
   
@@ -312,7 +304,7 @@ export default {
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) inset;
   }
   
-  .paleText {
+  .pale_text {
     color: rgba(0, 0, 0, 0.69);
   }
 </style>

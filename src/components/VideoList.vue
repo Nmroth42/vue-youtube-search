@@ -1,12 +1,12 @@
 <template>
-  <div class="VideoList">
-     <div class="VideoDetail-nav" >
+  <div class="video_list">
+     <div class="video_detail_nav" >
             <span @click="navigateTo({name:'index'})" >  back to main page </span>
       </div>
     <transition name="fade">
-      <div v-if="this.$store.state.videos" class="VideoListWrapper">
-        <div class="row largeScreenVideoList">
-          <Video-Item class="videoItem" v-for="video in this.$store.state.videos" 
+      <div v-if="this.$store.state.videos" class="video_list_wrapper">
+        <div class="row screen_video_list">
+          <Video-Item v-for="video in this.$store.state.videos" 
           :key="video.id.videoId" :video="video">
           </Video-Item>
         </div>
@@ -24,7 +24,7 @@ export default {
   components: {
     VideoItem,
   },
-  name: 'VideoList',
+  name: 'video_list',
     methods: {
     navigateTo(route) {
       this.$store.commit('makeSearchClear');
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.VideoDetail-nav {
+.video_detail_nav {
         height: 40px;
         line-height: 40px;
         text-align: left;
@@ -43,7 +43,7 @@ export default {
         color:rgba(0, 0, 0, 0.42);
        
     }
-   .VideoDetail-nav > span:hover {
+   .video_detail_nav > span:hover {
        color:rgba(0, 0, 0, 0.69);
       transition: 0.15s ease-in-out;
        cursor: pointer;
@@ -60,7 +60,7 @@ export default {
   
   }
   
-  .VideoListWrapper {
+  .video_list_wrapper {
     margin-left: 60px;
       margin-right: 60px;
     padding: 30px;
@@ -71,13 +71,13 @@ export default {
   }
   
   @media only screen and (max-width: 900px) {
-    .VideoListWrapper {
+    .video_list_wrapper {
       margin: 0px;
       padding: 30px;
     }
   }
   
-  .largeScreenVideoList {
+  .screen_video_list {
     width: 1070px;
     transform: translate(-50%);
     position: relative;
@@ -85,7 +85,7 @@ export default {
   }
   
   @media only screen and (min-width: 562px) and (max-width: 946px) {
-    .largeScreenVideoList {
+    .screen_video_list {
       width: 532px !important;
       margin-left: auto;
       margin-right: auto;
@@ -93,7 +93,7 @@ export default {
   }
   
   @media only screen and (max-width: 1030px) {
-    .largeScreenVideoList {
+    .screen_video_list {
       width: auto;
       transform: none;
       position: relative;

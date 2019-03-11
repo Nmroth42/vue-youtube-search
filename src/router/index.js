@@ -21,7 +21,7 @@ export default new Router({
       component: VideoList,
     },
     {
-      path: '/video/:id',
+      path: '/watch/',
       name: 'video',
       component: VideoDetail,
     },

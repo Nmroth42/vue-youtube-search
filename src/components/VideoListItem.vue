@@ -1,16 +1,14 @@
 <template>
-
-  <div class="VideoListItem" >
-     
+  <div class="video_list_item" >
     <b-card class="card" 
-    v-on:click="handleChooseVideo({name:'video', params: {id: video.id.videoId, video:video}})">
+    v-on:click="handleChooseVideo({name:'video', query:{v:video.id.videoId}})">
       <img class="card-img-top" v-bind:src="videoImage">
       <br>
       <br>
       <h6 class="card-title"> {{video.snippet.title}}</h6>
       <hr>
       <b-card-text>
-        <span class="textWrapper">{{video.snippet.description}}</span>
+        <span class="test_wrapper">{{video.snippet.description}}</span>
         <span v-if="!video.snippet.description"> This video has no description </span>
       </b-card-text>
     </b-card>
@@ -21,7 +19,7 @@
 import Search from '@/services/Search'
 
 export default {
-  name: 'VideoListItem',
+  name: 'video_list_item',
   computed: {
     videoImage() {
       return this.video.snippet.thumbnails.medium.url;
@@ -41,24 +39,24 @@ export default {
 
 <style scoped>
  
-  .textWrapper {
+  .test_wrapper {
     background: rgba(245, 245, 245, 0.55);
     padding: 5px;
   }
   
-  .VideoListItem {
+  .video_list_item {
     padding:3px !important;
   }
 
   @media only screen and (max-width: 560px) {
-    .VideoListItem {
+    .video_list_item {
       transform: translate(-50%);
       position: relative;
       left: 50%;
     }
   }
   
-  .VideoListItem .card:hover {
+  .video_list_item .card:hover {
     cursor: pointer;
     background: rgba(250, 250, 250, 0.42);
     box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
@@ -66,7 +64,7 @@ export default {
     transition-property: all;
   }
   
-  .VideoListItem .card:hover .card-img-top {
+  .video_list_item .card:hover .card-img-top {
     -webkit-filter: saturate(1.3);
     filter: saturate(1.3);
   }
