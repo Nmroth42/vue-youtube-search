@@ -106,11 +106,10 @@ export default {
       document.head.removeChild(script);
       this.video = response.items[0];
     };
-    const apikey = this.$store.state.apiYoutubeKey;
     const s = document.createElement("script");
     s.charset = "utf-8";
     document.head.appendChild(s);
-    s.src = `https://www.googleapis.com/youtube/v3/videos?key=${apikey}&part=snippet&id=${
+    s.src = `https://www.googleapis.com/youtube/v3/videos?key=${this.$store.state.apiYoutubeKey}&part=snippet&id=${
       this.videoId
     }&callback=suggestCallback`;
     window.suggestCallback = makeCallback(s);

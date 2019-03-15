@@ -10,14 +10,17 @@ export default new Vuex.Store({
   strict: true,
 
   state: {
-    defaultApiYoutubeKey: "AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o",
-    apiYoutubeKey: "AIzaSyCLWuugrgnK1Vy0iIIMvLrCMo2MNSAmR1o",
+    searchMaxResult: 2,
+    defaultApiYoutubeKey: "AIzaSyCs7T7ieJrSqM1-hifUx-TGwGA8LGwT3o4",
+    apiYoutubeKey: "AIzaSyCs7T7ieJrSqM1-hifUx-TGwGA8LGwT3o4",
     videos: null,
     makeSearchClear: false,
-    BASE_URL: "https://www.googleapis.com/youtube/v3/search",
-    params: null,
+    BASE_URL: "https://www.googleapis.com/youtube/v3/search"
   },
   mutations: {
+    setCustomSearchMaxResult(state, maxResult) {
+      state.searchMaxResult = maxResult;
+    },
     makeSearchClear(state) {
       state.makeSearchClear = !state.makeSearchClear;
     },
@@ -25,30 +28,17 @@ export default new Vuex.Store({
       state.apiYoutubeKey = apikey;
     },
     setDefaultApiKey(state) {
-        state.apiYoutubeKey = state.defaultApiYoutubeKey;
+      state.apiYoutubeKey = state.defaultApiYoutubeKey;
     },
-    search(state, query) { 
-      if (!state.apiYoutubeKey) {
-        throw new Error("key not found");
-      }
-      const params = {
-        part: "snippet",
-        key: state.apiYoutubeKey,
-        q: query,
-        maxResults: 1,
-        type: "video"
-      };
-      axios.get(state.BASE_URL, { params }).then(response => {
-        state.videos = response.data.items;
-      });
-    },
+    SetVideos(state, response) {
+      state.videos = response.data.items;
+    }
   },
   actions: {
-    SetVideosFromSubmit({ commit }, query) {
-      commit("search", query);
-    },
-    SetVideosFromSuggestion({ commit }, query) {
-      commit("search", query);
+    Search({ commit }, params) {
+      axios.get(params.url, { params }).then(response => {
+        commit("SetVideos", response);
+      });
     }
   }
 });

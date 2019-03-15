@@ -13,7 +13,8 @@
           <div class="col-md-8 col-sm-9 col-lg-6 search_Panel">
             <b-form-input
               v-model="searchString"
-              class="search_input"
+              class="search_input
+"
               type="text"
               autocomplete="off"
               :placeholder="searchMessage"
@@ -94,27 +95,28 @@ export default {
       if (this.isSearchWatcherWork) {
         if (query === "") {
           this.suggestionsList = null;
+        } else {
+          const makeCallback = script => response => {
+            const jsonArray = {
+              ...response
+            };
+            const jsonItem = {
+              ...jsonArray[1]
+            };
+            this.suggestionsList = jsonItem;
+            if (this.searchString === "") {
+              this.suggestionsList = null;
+            }
+          };
+          setTimeout(() => {
+            const s = document.createElement("script");
+            s.charset = "utf-8";
+            document.head.appendChild(s);
+            s.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=${query}&callback=suggestCallback`;
+            window.suggestCallback = makeCallback(s);
+            document.head.removeChild(s);
+          }, 100);
         }
-        const makeCallback = script => response => {
-          document.head.removeChild(script);
-          const jsonArray = {
-            ...response
-          };
-          const jsonItem = {
-            ...jsonArray[1]
-          };
-          this.suggestionsList = jsonItem;
-          if (this.searchString === "") {
-            this.suggestionsList = null;
-          }
-        };
-        setTimeout(() => {
-          const s = document.createElement("script");
-          s.charset = "utf-8";
-          document.head.appendChild(s);
-          s.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=${query}&callback=suggestCallback`;
-          window.suggestCallback = makeCallback(s);
-        }, 100);
       }
     }
   },
@@ -126,7 +128,14 @@ export default {
       if (this.searchString === "") {
         this.searchMessage = "Empty query!";
       } else {
-         this.$store.dispatch("SetVideosFromSubmit", this.searchString);
+        this.$store.dispatch("Search", {
+          part: "snippet",
+          key: this.$store.state.apiYoutubeKey,
+          q: this.searchString,
+          maxResults: this.$store.state.searchMaxResult,
+          type: "video",
+          url: this.$store.state.BASE_URL
+        });
         const vm = this;
         this.suggestionsList = null;
         this.searchMessage = "Enter the query";
@@ -146,8 +155,6 @@ export default {
       var vm = this;
       this.isSearchWatcherWork = false;
       this.searchString = item;
-      this.$store.dispatch("SetVideosFromSuggestion", item);
-      var vm = this;
       vm.searchMessage = "Enter the query";
       vm.suggestionsList = null;
       setTimeout(() => {
@@ -190,7 +197,9 @@ export default {
 .search_input {
   width: 100% !important;
 }
-
+.search_Panel:focus {
+    box-shadow: none !important;
+}
 .search_Panel {
   padding: 0px !important;
   margin-left: auto !important;
@@ -199,6 +208,7 @@ export default {
 
 .main_background {
   background: #fafafa;
+  box-shadow: none !important;
 }
 
 .no_padding {
@@ -288,7 +298,6 @@ a {
 }
 
 .search_input:focus {
-  box-shadow: none !important;
   box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
 }
 
@@ -297,7 +306,7 @@ a {
 }
 
 .search_input:hover {
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
 }
 
 .btn:focus {
