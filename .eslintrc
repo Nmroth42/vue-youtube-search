@@ -4,7 +4,16 @@
     "eslint:recommended",
     "plugin:vue/strongly-recommended"
   ],
-  "parser": "babel-eslint",
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+ "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "env": {
     "browser": true,
     "node": true,
@@ -12,6 +21,7 @@
     "mocha": true
   },
   "rules": {
+    "import/no-unresolved": [ 2, { caseSensitive: false } ],
     "valid-jsdoc": ["error", {
       "requireReturn": true,
       "requireReturnType": true,

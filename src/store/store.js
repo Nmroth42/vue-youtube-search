@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Search from "@/services/Search";
 
 const axios = require("axios");
 

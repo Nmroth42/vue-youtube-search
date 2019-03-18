@@ -22,7 +22,6 @@
 
 <script>
 import VideoItem from "./VideoListItem";
-import SearchBar from "./SearchBar";
 // import { setTimeout } from 'timers';
 
 export default {

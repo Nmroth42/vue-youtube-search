@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Base from '@/components/Base';
-import SearchBar from '@/components/SearchBar';
 import IndexPage from '@/components/Index';
 import VideoList from '@/components/VideoList';
 import VideoDetail from '@/components/VideoDetail';

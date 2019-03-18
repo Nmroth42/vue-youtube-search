@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import Search from "@/services/Search";
-
 export default {
   name: "VideoListItem",
   computed: {

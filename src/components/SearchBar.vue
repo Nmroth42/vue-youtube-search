@@ -13,8 +13,7 @@
           <div class="col-md-8 col-sm-9 col-lg-6 search_Panel">
             <b-form-input
               v-model="searchString"
-              class="search_input
-"
+              class="search_input"
               type="text"
               autocomplete="off"
               :placeholder="searchMessage"
@@ -51,13 +50,9 @@
 
 <script>
 import { setTimeout } from "timers";
-import VideoList from "./VideoList";
 
 export default {
   name: "SearchBar",
-  components: {
-    VideoList
-  },
   data() {
     return {
       searchString: "",
@@ -198,7 +193,7 @@ export default {
   width: 100% !important;
 }
 .search_Panel:focus {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 .search_Panel {
   padding: 0px !important;
