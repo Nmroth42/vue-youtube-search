@@ -8,7 +8,7 @@
       >
         <b-nav-form
           class=" col-12 justify-content-md-center main_background"
-          @submit.prevent="handleFormSubmit()"
+          @submit.prevent="Search()"
         >
           <div class="col-md-8 col-sm-9 col-lg-6 search_Panel">
             <b-form-input
@@ -18,8 +18,8 @@
               autocomplete="off"
               :placeholder="searchMessage"
               autofocus
-              @focus="handleSearchWatcher()"
-              @blur="handleSearchOnBlurSuggestions()"
+              @focus="activateSearchWatcher()"
+              @blur="clearSuggestions()"
             />
             <b-button
               variant="Info"
@@ -36,7 +36,7 @@
                 v-for="(item, index) in suggestionsList"
                 :key="index"
                 class="search_item"
-                @click="handleSearchSuggestions(item, index)"
+                @click="SearchSuggestions(item, index)"
               >
                 {{ item }}
               </div>
@@ -58,7 +58,7 @@ export default {
       searchString: "",
       suggestionsList: null,
       searchMessage: "Enter the query",
-      isSearchWatcherWork: true
+      isSearchWatcherWork: null
     };
   },
   computed: {
@@ -69,6 +69,7 @@ export default {
   watch: {
     isSearchClear(value) {
       if (value === true) {
+        //тут было решено не выносить searchString в vuex, потому что он не "глобальный"
         this.searchString = "";
         this.$store.commit("makeSearchClear");
       }
@@ -78,11 +79,8 @@ export default {
       handler(value) {
         if (value !== undefined) {
           this.searchString = value;
-          const vm = this;
-          this.isSearchWatcherWork = false;
-          setTimeout(() => {
-            vm.handleFormSubmit();
-          }, 0);
+          this.isSearchWatcherWork = false
+          this.Search();
         }
       }
     },
@@ -103,23 +101,21 @@ export default {
               this.suggestionsList = null;
             }
           };
-          setTimeout(() => {
             const s = document.createElement("script");
             s.charset = "utf-8";
             document.head.appendChild(s);
             s.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=${query}&callback=suggestCallback`;
             window.suggestCallback = makeCallback(s);
             document.head.removeChild(s);
-          }, 100);
         }
       }
     }
   },
   methods: {
-    handleSearchWatcher() {
+    activateSearchWatcher() {
       this.isSearchWatcherWork = true;
     },
-    handleFormSubmit() {
+    Search() {
       if (this.searchString === "") {
         this.searchMessage = "Empty query!";
       } else {
@@ -131,27 +127,25 @@ export default {
           type: "video",
           url: this.$store.state.BASE_URL
         });
-        const vm = this;
         this.suggestionsList = null;
         this.searchMessage = "Enter the query";
         const route = {
           name: "list"
         };
         route.query = {
-          search: vm.searchString
+          search: this.searchString
         };
-        // console.log(vm.$route.query.search);
-        this.isSearchWatcherWork = true;
-        vm.$router.push(route);
+
+        this.$router.push(route);
       }
     },
-    handleSearchSuggestions(item) {
+    SearchSuggestions(item) {
       // поиск по подсказке
       var vm = this;
       this.isSearchWatcherWork = false;
       this.searchString = item;
-      vm.searchMessage = "Enter the query";
-      vm.suggestionsList = null;
+      this.searchMessage = "Enter the query";
+      this.suggestionsList = null;
       setTimeout(() => {
         const route = {
           name: "list"
@@ -162,7 +156,9 @@ export default {
         vm.$router.push(route);
       }, 0);
     },
-    handleSearchOnBlurSuggestions() {
+    clearSuggestions() {
+      //без setTimeout не будет работать поиск по подсказкам
+      this.isSearchWatcherWork = false;
       const vm = this;
       setTimeout(() => {
         vm.suggestionsList = null;

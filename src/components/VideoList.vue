@@ -1,7 +1,14 @@
 <template>
   <div class="video_list">
     <div class="video_detail_nav">
-      <span @click="navigateTo({ name: 'index' })"> back to main page </span>
+      <router-link to="/">
+        <span
+          @click="clearSearchBar"
+          class="green_font"
+        >
+          back to main page
+        </span>
+      </router-link>
     </div>
     <transition name="fade">
       <div
@@ -30,15 +37,20 @@ export default {
     VideoItem
   },
   methods: {
-    navigateTo(route) {
+    clearSearchBar() {
       this.$store.commit("makeSearchClear");
-      this.$router.push(route);
     }
   }
 };
 </script>
 
 <style scoped>
+.green_font {
+  color: #42b983;
+}
+a:hover {
+  text-decoration: none;
+}
 .video_detail_nav {
   height: 40px;
   line-height: 40px;

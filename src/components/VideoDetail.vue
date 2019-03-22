@@ -1,14 +1,24 @@
 <template>
   <div class="video_detail">
     <div class="video_detail_nav">
-      <span @click="navigateTo({ name: 'index' })"> Main </span>
+      <router-link to="/">
+        <span
+          class="green_font"
+          @click="clearSearchBar"
+        > Main
+        </span>
+      </router-link>
       <span
+        class="green_font"
         v-if="this.$store.state.videos"
         onclick="history.back();"
       >
         | back to list
       </span>
-      <span @click="toggleView()">
+      <span
+        class="green_font"
+        @click="toggleView()"
+      >
         | toggle view
       </span>
     </div>
@@ -115,18 +125,23 @@ export default {
     window.suggestCallback = makeCallback(s);
   },
   methods: {
-    navigateTo(route) {
-      this.$store.commit("makeSearchClear");
-      this.$router.push(route);
-    },
     toggleView() {
       this.isToggle = !this.isToggle;
+    },
+    clearSearchBar() {
+      this.$store.commit("makeSearchClear");
     }
   }
 };
 </script>
 
 <style scoped>
+.green_font {
+  color: #42b983;
+}
+a:hover {
+  text-decoration: none;
+}
 .video_panel_tight {
   display: inline-flex;
   text-align: left;
@@ -141,11 +156,13 @@ export default {
   color: rgba(0, 0, 0, 0.81);
   padding: 10px;
   max-width: 500px;
+    width: 100%;
   background: white;
 }
 .text_wrapper {
   background: rgba(245, 245, 245, 0.55);
   padding: 5px;
+  font-weight: 600;
 }
 .video_panel_player > div {
   float: left;
@@ -180,8 +197,6 @@ export default {
 }
 
 .video_detail_nav > span:hover {
-  color: rgba(0, 0, 0, 0.69);
-  transition: 0.15s ease-in-out;
   cursor: pointer;
 }
 

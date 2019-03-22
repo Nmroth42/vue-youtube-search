@@ -3,7 +3,7 @@
     <b-card
       class="card"
       @click="
-        handleChooseVideo({ name: 'video', query: { v: video.id.videoId } })
+        navigateTo({ name: 'video', query: { v: video.id.videoId } })
       "
     >
       <img
@@ -34,14 +34,17 @@ export default {
       return this.video.snippet.thumbnails.medium.url;
     }
   },
-  props: ["video"],
-  methods: {
-    handleChooseVideo(route) {
-      this.$router.push(route);
+  props: {
+    // Without options, just type reference
+    video:{
+      type: Object,
+      required: true
     },
+  },
+  methods: {
     navigateTo(route) {
       this.$router.push(route);
-    }
+    },
   }
 };
 </script>

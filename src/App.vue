@@ -32,11 +32,11 @@ export default {
 
 .router-anim-enter-active {
   animation: coming 1s;
-  animation-delay: 0.5s;
+  animation-delay: 0.9s;
   opacity: 0;
 }
 .router-anim-leave-active {
-  animation: going 1s;
+  animation: going 0.75s;
 }
 @keyframes going {
   from {

@@ -3,7 +3,7 @@
     <div class="pale_text index_wrapper">
       <br>
       <div class="text_wrapper">
-        Project description: Nice search bar + responsive design.
+        Project description: YouTube frontend with Vue.js .
         <hr>
         <input
           class="simple_input"
@@ -12,13 +12,13 @@
           v-model="apiKeyString"
         >
         <span
-          class="simple_btn"
+          class="simple_btn green_font"
           @click="setCustomApiKey()"
         >
           Set custom key</span>
         |
         <span
-          class="simple_btn"
+          class="simple_btn green_font"
           @click="setDefaultApiKey()"
         >Set default key</span>
         <hr>
@@ -30,7 +30,7 @@
           v-model="numberOfSearchElement"
         >
         <span
-          class="simple_btn"
+          class="simple_btn green_font"
           @click="setCustomNumberOfSearch()"
         >
           Set number</span>
@@ -85,6 +85,9 @@ export default {
 </script>
 
 <style scoped>
+.green_font {
+  color: #42b983;
+}
 .simple_input {
   background: white;
   color: black;
@@ -109,7 +112,6 @@ export default {
   height: 0px !important;
 }
 .simple_btn:hover {
-  color: rgba(0, 0, 0, 0.81);
   cursor: pointer;
 }
 </style>

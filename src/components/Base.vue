@@ -7,12 +7,13 @@
       class="white uborder"
     >
       <b-navbar-brand
-        @click="navigateTo({ name: 'index' })"
-        href="#"
+        @click="clearSearchBar"
         class="brand_plain_text"
       >
-        <span class="brand_pale_text">like</span>YouTube
-        <span class="brand_pale_text">but only search</span>
+        <router-link to="/">
+          <span class="brand_pale_text">like </span>YouTube
+          <span class="brand_pale_text">but only search</span>
+        </router-link>
       </b-navbar-brand>
     </b-navbar>
   </div>
@@ -22,9 +23,8 @@
 export default {
   name: "Base",
   methods: {
-    navigateTo(route) {
+    clearSearchBar() {
       this.$store.commit("makeSearchClear");
-      this.$router.push(route);
     }
   }
 };
@@ -35,8 +35,11 @@ export default {
 .brand_pale_text {
   color: rgba(0, 0, 0, 0.42);
   font-size: 18px;
-  padding-right: 5px;
 }
+a:hover {
+  text-decoration: none;
+}
+
 .brand_plain_text {
   color: rgba(0, 0, 0, 0.69) !important;
 }
