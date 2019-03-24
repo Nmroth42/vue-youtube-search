@@ -91,9 +91,6 @@ export default {
         } else {
           const makeCallback = script => response => {
             this.suggestionsList = response[1];
-            if (this.searchString === "") {
-              this.suggestionsList = null;
-            }
           };
             const s = document.createElement("script");
             s.charset = "utf-8";
