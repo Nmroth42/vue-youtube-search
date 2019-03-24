@@ -35,7 +35,6 @@ export default {
     }
   },
   props: {
-    // Without options, just type reference
     video:{
       type: Object,
       required: true
@@ -56,7 +55,7 @@ export default {
 }
 
 .video_list_item {
-  padding: 3px !important;
+  padding: 3px;
 }
 
 @media only screen and (max-width: 560px) {
@@ -83,15 +82,15 @@ export default {
 .card {
   width: 260px;
   border: none;
-  margin-bottom: 10px !important;
+  margin-bottom: 10px;
   height: 415px;
-  border-bottom: 4px solid #f5f5f5 !important;
+  border-bottom: 4px solid #f5f5f5;
 }
 
 .card-body {
-  font-size: 15px !important;
-  padding: 0px !important;
-  text-overflow: ellipsis !important;
+  font-size: 15px;
+  padding: 0px;
+  text-overflow: ellipsis;
 }
 
 .card-text {
@@ -107,6 +106,6 @@ export default {
   padding: 10px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis !important;
+  text-overflow: ellipsis;
 }
 </style>

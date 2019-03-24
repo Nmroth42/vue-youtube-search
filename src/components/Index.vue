@@ -109,7 +109,7 @@ export default {
 }
 .index_wrapper {
   width: 100%;
-  height: 0px !important;
+  height: 0px ;
 }
 .simple_btn:hover {
   cursor: pointer;

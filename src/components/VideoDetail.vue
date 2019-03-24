@@ -156,13 +156,11 @@ a:hover {
   color: rgba(0, 0, 0, 0.81);
   padding: 10px;
   max-width: 500px;
-    width: 100%;
   background: white;
 }
 .text_wrapper {
   background: rgba(245, 245, 245, 0.55);
   padding: 5px;
-  font-weight: 600;
 }
 .video_panel_player > div {
   float: left;

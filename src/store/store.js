@@ -10,8 +10,8 @@ export default new Vuex.Store({
 
   state: {
     searchMaxResult: 2,
-    defaultApiYoutubeKey: "AIzaSyAOnceYEq_ac2hU-ajrok_ij8N2MV4z408",
-    apiYoutubeKey: "AIzaSyAOnceYEq_ac2hU-ajrok_ij8N2MV4z408",
+    defaultApiYoutubeKey: "AIzaSyCTJYnFIwjms8ycm2wr83hPgYA-2m4siqQ",
+    apiYoutubeKey: "AIzaSyCTJYnFIwjms8ycm2wr83hPgYA-2m4siqQ",
     videos: null,
     makeSearchClear: false,
     BASE_URL: "https://www.googleapis.com/youtube/v3/search"

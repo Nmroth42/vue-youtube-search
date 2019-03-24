@@ -36,12 +36,12 @@ export default {
   color: rgba(0, 0, 0, 0.42);
   font-size: 18px;
 }
-a:hover {
+a:hover{
   text-decoration: none;
 }
 
 .brand_plain_text {
-  color: rgba(0, 0, 0, 0.69) !important;
+  color: rgba(0, 0, 0, 0.69) ;
 }
 
 h1,

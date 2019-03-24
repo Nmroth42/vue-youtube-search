@@ -170,7 +170,7 @@ export default {
 
 <style scoped>
 .b-form-input {
-  width: 100% !important;
+  width: 100%;
 }
 .search_suggestions_list_wrapper {
   border: 1px solid rgba(0, 0, 0, 0.205);
@@ -186,28 +186,28 @@ export default {
 }
 
 .search_input {
-  width: 100% !important;
+  width: 100%;
 }
 .search_Panel:focus {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 .search_Panel {
-  padding: 0px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main_background {
   background: #fafafa;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .no_padding {
-  padding: 0px !important;
+  padding: 0px;
 }
 
 .search_bar_inward_space {
-  background: #fafafa !important;
+  background: #fafafa;
   padding: 20px;
 }
 
@@ -220,15 +220,15 @@ export default {
 }
 
 .search_button:hover span {
-  color: rgba(0, 0, 0, 0.87) !important;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .search_button:hover {
-  background: #f0f0f0 !important;
+  background: #f0f0f0;
 }
 
 .search_item:hover {
-  background: #eeeeee !important;
+  background: #eeeeee;
 }
 
 .search_item {
@@ -275,21 +275,21 @@ a {
 }
 
 .ucolor {
-  background: #ff0000 !important;
+  background: #ff0000;
 }
 
 .white {
-  background: rgb(255, 255, 255) !important;
+  background: rgb(255, 255, 255);
 }
 
 .uborder {
   border: 1px solid rgba(0, 0, 0, 0.205);
   border-radius: 3px;
-  pading: 0px !important;
+  pading: 0px;
 }
 
 .search_input:focus {
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
 }
 
 .search_input {
@@ -297,21 +297,20 @@ a {
 }
 
 .search_input:hover {
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
 }
 
 .btn:focus {
   box-shadow: none;
 }
-
-.btn:hover {
-}
-
 .btn:active {
   box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) inset;
 }
 
 .pale_text {
   color: rgba(0, 0, 0, 0.69);
+}
+b-form-input:hover {
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
 }
 </style>
