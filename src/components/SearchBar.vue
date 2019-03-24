@@ -126,7 +126,6 @@ export default {
         route.query = {
           search: this.searchString
         };
-
         this.$router.push(route);
       }
     },
