@@ -91,7 +91,7 @@ export default {
         } else {
           const makeCallback = script => response => {
             this.suggestionsList = response[1];
-            //если быстро стереть поисковую строку, то нужен этот метод
+            //если быстро стереть поисковую строку, то нужна доп проверка
             if (this.searchString === "") {
               this.suggestionsList = null;
             }
