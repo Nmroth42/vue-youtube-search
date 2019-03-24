@@ -8,18 +8,20 @@
         > Main
         </span>
       </router-link>
+      |
       <span
         class="green_font"
         v-if="this.$store.state.videos"
         onclick="history.back();"
       >
-        | back to list
+        back to list
       </span>
+      |
       <span
         class="green_font"
         @click="toggleView()"
       >
-        | toggle view
+        toggle view
       </span>
     </div>
     <div
