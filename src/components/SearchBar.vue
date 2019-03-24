@@ -90,8 +90,7 @@ export default {
           this.suggestionsList = null;
         } else {
           const makeCallback = script => response => {
-            const jsonItem = response[1]
-            this.suggestionsList = jsonItem;
+            this.suggestionsList = response[1];
             if (this.searchString === "") {
               this.suggestionsList = null;
             }
