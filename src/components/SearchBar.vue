@@ -187,7 +187,6 @@ export default {
 
 .search_input {
   width: 100% !important;
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important ;
   border: 1px solid rgba(0, 0, 0, 0.205)!important;
 }
 .search_Panel:focus {

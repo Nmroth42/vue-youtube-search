@@ -61,6 +61,9 @@ li {
 a {
   color: #42b983;
 }
+a:hover{
+  color:#42b983 !important;
+}
 
 .white {
   background: rgba(255, 255, 255, 0.719) !important;
