@@ -30,7 +30,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .brand_pale_text {
   color: rgba(0, 0, 0, 0.42);

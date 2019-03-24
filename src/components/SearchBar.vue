@@ -186,7 +186,9 @@ export default {
 }
 
 .search_input {
-  width: 100%;
+  width: 100% !important;
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important ;
+  border: 1px solid rgba(0, 0, 0, 0.205)!important;
 }
 .search_Panel:focus {
   box-shadow: none;
@@ -289,15 +291,11 @@ a {
 }
 
 .search_input:focus {
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
-}
-
-.search_input {
-  border: 1px solid rgba(0, 0, 0, 0.205);
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
 }
 
 .search_input:hover {
-  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116);
+  box-shadow: 0px 0px 1px 1px rgba(70, 70, 70, 0.116) !important;
 }
 
 .btn:focus {
