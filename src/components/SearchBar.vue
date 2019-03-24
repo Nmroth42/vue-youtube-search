@@ -91,6 +91,10 @@ export default {
         } else {
           const makeCallback = script => response => {
             this.suggestionsList = response[1];
+            //если быстро стереть поисковую строку, то нужен этот метод
+            if (this.searchString === "") {
+              this.suggestionsList = null;
+            }
           };
             const s = document.createElement("script");
             s.charset = "utf-8";
